@@ -15,7 +15,7 @@ func (app *application) routes() http.Handler {
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 
 	// Use the nosurf middleware on all our 'dyamic' routes.
-	dynamic := alice.New(app.sessionManager.LoadAndSave, noSurf)
+	dynamic := alice.New(app.sessionManager.LoadAndSave, noSurf, app.authenticate)
 
 	// Update these routes to use the new dynamic middle chain followed by
 	// the appropriate handler function. Note that because the alice ThenFunc()
