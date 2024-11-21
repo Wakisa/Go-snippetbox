@@ -35,6 +35,7 @@ func (app *application) routes() http.Handler {
 	// need returns a http.Handler (rather than a http.HandlerFunction) we also
 	// need to switch to registering the route using the mux.Handle() method.
 	mux.Handle("GET /{$}", dynamic.ThenFunc(app.home))
+	mux.Handle("GET /about", dynamic.ThenFunc(app.about))
 	mux.Handle("GET /snippet/view/{id}", dynamic.ThenFunc(app.snippetView))
 
 	// Add the five new routes, all of which use our 'dynamic' middleware chain.
